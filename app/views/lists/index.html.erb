@@ -1,0 +1,33 @@
+<div class="banner h-50 d-flex justify-content-between px-4" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://media.pathe.nl/gfx_content/bioscoop/Tuschinski/PatheTuschinski_Zaal1a.jpg); background-size: cover">
+  <div class="container">
+    <h1>Welcome to Movies WatchList</h1>
+    <p>You've saved <%= @lists.count %> list so far.</p>
+  </div>
+
+  <section class="form bg-white p-4 rounded-3 shadow-lg w-50 align-self-end">
+    <h5>Create a new one</h5>
+    <%= simple_form_for @list do |f| %>
+      <%= f.input :name %>
+      <%= f.input :image_url %>
+      <%= f.button :submit, class: "btn btn-primary" %>
+    <% end %>
+  </section>
+</div>
+
+<div class="container lists-container">
+  <main class="p-4">
+    <ul class="list-unstyled container">
+      <div class="row">
+        <% @lists.each do |list| %>
+          <li class="col-12 col-sm-6 col-md-4">
+            <%= link_to list_path(list), class: "link-unstyled text-decoration-none" do %>
+              <div class="simple-picture-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= list.image_url %>)">
+                <%= list.name %>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
+      </div>
+    </ul>
+  </main>
+</div>

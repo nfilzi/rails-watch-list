@@ -1,0 +1,13 @@
+<div class="container mt-4">
+  <h1>Let's bookmark a movie into the <%= @list.name %> list</h1>
+
+  <div class="bg-white p-4 rounded w-50">
+    <%= simple_form_for [@list, @bookmark] do |form| %>
+      <%= form.input :comment %>
+      <%= form.association :movie %>
+      <div class="d-flex justify-content-end">
+        <%= form.button :submit, class: "btn btn-primary right"  %>
+      </div>
+    <% end %>
+  </div>
+</div>

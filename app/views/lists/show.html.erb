@@ -1,0 +1,36 @@
+<div class="container">
+  <header class="d-flex justify-content-between align-items-center p-2">
+    <h1><%= @list.name %></h1>
+    <div class="d-flex">
+      <%= link_to "Back to lists", lists_path, class: "link" %>
+      <%= link_to "Bookmark a new movie", new_list_bookmark_path(@list), class: "btn btn-primary" %>
+    </div>
+  </header>
+
+  <% if @list.bookmarks.any? %>
+    <% @list.bookmarks.each do |bookmark| %>
+      <div class="card" style="width: 18rem;">
+        <%= image_tag bookmark.movie.poster_url, class: "card-img-top" %>
+
+        <div class="card-body">
+          <h5 class="card-title"><%= bookmark.movie.title %></h5>
+          <p class="card-text"><%= truncate bookmark.movie.overview, length: 144 %></p>
+          <blockquote class="blockquote border-start border-primary border-2 ps-2">
+            <p class="fs-6 fst-italic"><%= bookmark.comment %></p>
+          </blockquote>
+          </p>
+          <%= link_to bookmark_path(bookmark),
+            class: "btn btn-danger text-white w-100",
+            data: {
+              turbo_method: :delete
+            } do %>
+            <i class="fa-solid fa-trash"></i>
+            Remove from list
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>You have no movies bookmarked in this list yet 😢</p>
+  <% end %>
+</div>
