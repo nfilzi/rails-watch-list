@@ -8,7 +8,8 @@
     <h5>Create a new one</h5>
     <%= simple_form_for @list do |f| %>
       <%= f.input :name %>
-      <%= f.input :image_url %>
+      <%#= f.input :image_url %>
+      <%= f.input :image, as: :file %>
       <%= f.button :submit, class: "btn btn-primary" %>
     <% end %>
   </section>
