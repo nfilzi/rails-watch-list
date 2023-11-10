@@ -22,7 +22,7 @@
         <% @lists.each do |list| %>
           <li class="col-12 col-sm-6 col-md-4">
             <%= link_to list_path(list), class: "link-unstyled text-decoration-none" do %>
-              <div class="simple-picture-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= list.image_url %>)">
+              <div class="simple-picture-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path list.image.key %>)">
                 <%= list.name %>
               </div>
             <% end %>
